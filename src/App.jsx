@@ -10,26 +10,93 @@ function App() {
   const [activeSectionIndex, setActiveSectionIndex] = useState(0);
   const sectionRefs = useRef({});
 
+  const lastGPressTime = useRef(0);
+
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
   useEffect(() => {
     const handleKeyDown = (event) => {
+      const now = Date.now();
+      const doublePressThreshold = 350;
+
       if (event.key === "j") {
         setActiveSectionIndex((prevIndex) =>
           Math.min(prevIndex + 1, sectionOrder.length - 1),
         );
+        lastGPressTime.current = 0;
       } else if (event.key === "k") {
-        setActiveSectionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+        if (activeSectionIndex === 0) {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        } else {
+          setActiveSectionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+        }
+        lastGPressTime.current = 0;
+      } else if (event.key === "G") {
+        setActiveSectionIndex(sectionOrder.length - 1);
+        lastGPressTime.current = 0;
+      } else if (event.key === "g") {
+        if (now - lastGPressTime.current < doublePressThreshold) {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+          setActiveSectionIndex(0);
+          lastGPressTime.current = 0;
+        } else {
+          lastGPressTime.current = now;
+        }
+      } else if (event.key === "f" || event.key === "F") {
+        toggleFullScreen();
+        lastGPressTime.current = 0;
+      } else {
+        lastGPressTime.current = 0;
       }
-      // Add 'gg' and 'G' later if desired
-      // else if (event.key === 'g' && event.shiftKey === false) {  // needs more logic
-      // } else if (event.key === 'G' && event.shiftKey === true) {
-      //     setActiveSectionIndex(sectionOrder.length - 1);
-      // }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [sectionOrder]);
+  }, [sectionOrder, activeSectionIndex]);
+
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen();
+      } else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+  };
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const activeSectionId = sectionOrder[activeSectionIndex];
@@ -175,14 +242,29 @@ function App() {
           <span className="dot red"></span>
           <span className="dot yellow"></span>
           <span className="dot green"></span>
-          <span className="terminal-title">Carlo_k_cv - ~</span>
+          <span className="terminal-title">
+            vim - Carlo_k_cv - ~ —{" "}
+            {windowSize.width && windowSize.height
+              ? `${windowSize.width}x${windowSize.height}`
+              : ""}
+          </span>
         </div>
 
         <div className="terminal-body">
-          <h1 className="main-name">
-            {cvData.name}
-            <span className="cursor"></span>
-          </h1>
+          <div className="intro">
+            <h1 className="main-name">
+              {cvData.name}
+              <span className="cursor"></span>
+            </h1>
+            <div className="vim-hints">
+              <p>f: fullscreen</p>
+              <p>j: scroll down</p>
+              <p>k: scroll up</p>
+              <p>G: to bottom</p>
+              <p>gg: to top</p>
+            </div>
+          </div>
+
           <hr className="separator" />
 
           {sectionOrder.map((id, index) => {
@@ -209,8 +291,15 @@ function App() {
           })}
           <footer className="escape-solutions-footer">
             <p>
-              © {new Date().getFullYear()} Escape Solutions. All rights
-              reserved.
+              © {new Date().getFullYear()}{" "}
+              <a
+                href="https://www.linkedin.com/in/carlo-k/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Escape Solutions
+              </a>
+              . All rights reserved.
             </p>
           </footer>
         </div>

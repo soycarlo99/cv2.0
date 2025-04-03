@@ -137,12 +137,21 @@ export const cvData = {
     },
     {
       id: "proj3",
-      title: "AI Chatbot Interface",
+      title: "ManDoc",
       screenshotUrl:
-        "https://via.placeholder.com/400x250/445533/ffffff?text=Project+Gamma+Screenshot",
-      description: "A sleek frontend for interacting with an AI model.",
-      projectLink: "https://github.com/yourusername/project-gamma",
-      position: { bottom: "80px", right: "50px" },
+        "https://github.com/soycarlo99/manDoc/blob/main/src/Screenshot%202025-04-03%20at%2021.04.26.png?raw=true",
+      description:
+        "A web app for quick access to documentation links for programming languages, tools, and frameworks.",
+      projectLink: "https://github.com/soycarlo99/mandoc",
+    },
+    {
+      id: "proj4",
+      title: "Sky Fade",
+      screenshotUrl:
+        "https://github.com/soycarlo99/SkyFade/blob/main/Screenshot%202025-04-03%20at%2021.11.40.png?raw=true",
+      description:
+        "Find the perfect sunset spot anywhere with this interactive map that shows sunset times, direction, and weather conditions.",
+      projectLink: "https://github.com/soycarlo99/SkyFade",
     },
   ],
 };
