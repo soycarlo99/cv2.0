@@ -11,6 +11,7 @@ function App() {
   const sectionRefs = useRef({});
 
   const lastGPressTime = useRef(0);
+  const terminalBodyRef = useRef(null);
 
   const [windowSize, setWindowSize] = useState({
     width: undefined,
@@ -29,10 +30,17 @@ function App() {
         lastGPressTime.current = 0;
       } else if (event.key === "k") {
         if (activeSectionIndex === 0) {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
+          if (terminalBodyRef.current) {
+            terminalBodyRef.current.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          }
         } else {
           setActiveSectionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
         }
@@ -109,6 +117,18 @@ function App() {
       });
     }
   }, [activeSectionIndex, sectionOrder]);
+
+  // useEffect(() => {
+  //   terminalBodyRef.current.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  //
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  // });
 
   const assignRef = (id) => (el) => {
     sectionRefs.current[id] = el;
@@ -250,7 +270,7 @@ function App() {
           </span>
         </div>
 
-        <div className="terminal-body">
+        <div className="terminal-body" ref={terminalBodyRef}>
           <div className="intro">
             <h1 className="main-name">
               {cvData.name}

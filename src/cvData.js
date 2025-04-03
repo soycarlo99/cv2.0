@@ -153,6 +153,15 @@ export const cvData = {
         "Find the perfect sunset spot anywhere with this interactive map that shows sunset times, direction, and weather conditions.",
       projectLink: "https://github.com/soycarlo99/SkyFade",
     },
+    {
+      id: "proj5",
+      title: "Nvim Boolean Toggle",
+      screenshotUrl:
+        "https://github.com/soycarlo99/nvim-boolean-toggle/blob/main/screenshot.png?raw=true",
+      description:
+        "Find the perfect sunset spot anywhere with this interactive map that shows sunset times, direction, and weather conditions.",
+      projectLink: "https://github.com/soycarlo99/nvim-boolean-toggle",
+    },
   ],
 };
 
