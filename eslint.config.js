@@ -20,6 +20,10 @@ export default [
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
+    "scripts": {
+  "build": "webpack --mode production",
+  "deploy": "gh-pages -d dist"
+}
     rules: {
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
