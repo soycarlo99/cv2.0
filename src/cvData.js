@@ -117,6 +117,34 @@ export const cvData = {
       "Python developer - certificate (SoloLearn)",
     ],
   },
+  projects: [
+    {
+      id: "proj1",
+      title: "CRM WebApp",
+      screenshotUrl:
+        "https://github.com/soycarlo99/alcorel/blob/main/src/logotype/Screenshot.png?raw=true",
+      description:
+        "A customer realtion management system that different businesses can use to manage customer's tickets",
+      projectLink: "https://github.com/soycarlo99/alcorel",
+    },
+    {
+      id: "proj2",
+      title: "Echo Words",
+      screenshotUrl:
+        "https://github.com/soycarlo99/echowords/blob/main/wwwroot/photos/echowords%20screen.png?raw=true",
+      description: "A word-chain game with multi-player ability",
+      projectLink: "https://github.com/soycarlo99/echowords",
+    },
+    {
+      id: "proj3",
+      title: "AI Chatbot Interface",
+      screenshotUrl:
+        "https://via.placeholder.com/400x250/445533/ffffff?text=Project+Gamma+Screenshot",
+      description: "A sleek frontend for interacting with an AI model.",
+      projectLink: "https://github.com/yourusername/project-gamma",
+      position: { bottom: "80px", right: "50px" },
+    },
+  ],
 };
 
 export const getDeviconClass = (skillName) => {

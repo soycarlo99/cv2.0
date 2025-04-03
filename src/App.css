@@ -43,7 +43,10 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: calc(100vh - 40px);
+  height: 100vh;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 30px;
 }
 
 .terminal-header {
@@ -273,4 +276,100 @@ a:hover {
   .workflow-list {
     column-count: auto;
   }
+}
+
+.app-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.project-peek .project-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(30, 30, 30, 0.9);
+  color: var(--text-color);
+  padding: 10px 15px;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(100%);
+  transition:
+    opacity 0.3s ease-out 0.2s,
+    transform 0.3s ease-out 0.2s;
+}
+
+.project-showcase-area {
+  position: absolute;
+  top: calc(70px);
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.project-peek {
+  width: calc(50% - 10px);
+  height: 200px;
+  background-color: #555;
+  background-size: cover;
+  background-position: center top;
+  border: 2px solid var(--separator-color);
+  border-radius: 25px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.4s cubic-bezier(0, 0, 0, 1);
+  text-decoration: none;
+  clip-path: inset(0 0 75% 0);
+  z-index: 5;
+}
+
+.project-peek:hover {
+  clip-path: inset(0 0 0 0);
+  height: 250px;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  z-index: 11;
+}
+
+@media (max-width: 768px) {
+  .project-peek {
+    width: 100%;
+    height: 150px;
+  }
+}
+
+.project-peek:hover .project-details {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.terminal-window {
+  z-index: 10;
+}
+
+.escape-solutions-footer {
+  text-align: center;
+  margin-top: 4rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  opacity: 0.6;
+  transition: var(--transition-standard);
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--card-border);
+}
+
+.escape-solutions-footer:hover {
+  opacity: 1;
 }

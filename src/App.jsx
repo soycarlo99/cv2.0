@@ -169,53 +169,82 @@ function App() {
   };
 
   return (
-    <div className="terminal-window">
-      <div className="terminal-header">
-        <span className="dot red"></span>
-        <span className="dot yellow"></span>
-        <span className="dot green"></span>
-        <span className="terminal-title">Carlo_k_cv - ~</span>
-      </div>
+    <div className="app-container">
+      <div className="terminal-window">
+        <div className="terminal-header">
+          <span className="dot red"></span>
+          <span className="dot yellow"></span>
+          <span className="dot green"></span>
+          <span className="terminal-title">Carlo_k_cv - ~</span>
+        </div>
 
-      <div className="terminal-body">
-        <h1 className="main-name">
-          {cvData.name}
-          <span className="cursor"></span>
-        </h1>
-        <hr className="separator" />
+        <div className="terminal-body">
+          <h1 className="main-name">
+            {cvData.name}
+            <span className="cursor"></span>
+          </h1>
+          <hr className="separator" />
 
-        {sectionOrder.map((id, index) => {
-          const section = cvData[id];
-          const renderer = sectionRenderers[id];
-          const isActive = index === activeSectionIndex;
+          {sectionOrder.map((id, index) => {
+            const section = cvData[id];
+            const renderer = sectionRenderers[id];
+            const isActive = index === activeSectionIndex;
 
-          return (
-            <section
-              key={id}
-              id={id}
-              ref={assignRef(id)}
-              className={`cv-section ${isActive ? "active" : ""}`}
-              aria-label={section.title}
-            >
-              {renderer ? (
-                renderer(section)
-              ) : (
-                <p>Content definition missing for {id}.</p>
-              )}
-              <hr className="separator" />
-            </section>
-          );
-        })}
-      </div>
+            return (
+              <section
+                key={id}
+                id={id}
+                ref={assignRef(id)}
+                className={`cv-section ${isActive ? "active" : ""}`}
+                aria-label={section.title}
+              >
+                {renderer ? (
+                  renderer(section)
+                ) : (
+                  <p>Content definition missing for {id}.</p>
+                )}
+                <hr className="separator" />
+              </section>
+            );
+          })}
+          <footer className="escape-solutions-footer">
+            <p>
+              © {new Date().getFullYear()} Escape Solutions. All rights
+              reserved.
+            </p>
+          </footer>
+        </div>
 
-      <div className="status-bar">
-        <span>NORMAL</span>
-        <span className="section-indicator">
-          {cvData[sectionOrder[activeSectionIndex]]?.title || ""}
-        </span>
-        <span>
-          {activeSectionIndex + 1}/{sectionOrder.length}
-        </span>
+        <div className="status-bar">
+          <span>NORMAL</span>
+          <span className="section-indicator">
+            {cvData[sectionOrder[activeSectionIndex]]?.title || ""}
+          </span>
+          <span>
+            {activeSectionIndex + 1}/{sectionOrder.length}
+          </span>
+        </div>
+      </div>{" "}
+      <div className="project-showcase-area">
+        {cvData.projects?.map((project) => (
+          <a
+            key={project.id}
+            href={project.projectLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-peek"
+            style={{
+              backgroundImage: `url(${project.screenshotUrl})`,
+            }}
+            title={`View Project: ${project.title}`}
+          >
+            <div className="project-details">
+              <h4>{project.title}</h4>
+              <p>{project.description}</p>
+              <span>View on GitHub &rarr;</span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   );
