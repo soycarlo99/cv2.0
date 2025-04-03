@@ -117,6 +117,43 @@ export const cvData = {
       "Python developer - certificate (SoloLearn)",
     ],
   },
+  projects: [
+    {
+      id: "proj1",
+      title: "CRM WebApp",
+      screenshotUrl:
+        "https://github.com/soycarlo99/alcorel/blob/main/src/logotype/Screenshot.png?raw=true",
+      description:
+        "A customer realtion management system that different businesses can use to manage customer's tickets",
+      projectLink: "https://github.com/soycarlo99/alcorel",
+    },
+    {
+      id: "proj2",
+      title: "Echo Words",
+      screenshotUrl:
+        "https://github.com/soycarlo99/echowords/blob/main/wwwroot/photos/echowords%20screen.png?raw=true",
+      description: "A word-chain game with multi-player ability",
+      projectLink: "https://github.com/soycarlo99/echowords",
+    },
+    {
+      id: "proj3",
+      title: "ManDoc",
+      screenshotUrl:
+        "https://github.com/soycarlo99/manDoc/blob/main/src/Screenshot%202025-04-03%20at%2021.04.26.png?raw=true",
+      description:
+        "A web app for quick access to documentation links for programming languages, tools, and frameworks.",
+      projectLink: "https://github.com/soycarlo99/mandoc",
+    },
+    {
+      id: "proj4",
+      title: "Sky Fade",
+      screenshotUrl:
+        "https://github.com/soycarlo99/SkyFade/blob/main/Screenshot%202025-04-03%20at%2021.11.40.png?raw=true",
+      description:
+        "Find the perfect sunset spot anywhere with this interactive map that shows sunset times, direction, and weather conditions.",
+      projectLink: "https://github.com/soycarlo99/SkyFade",
+    },
+  ],
 };
 
 export const getDeviconClass = (skillName) => {
