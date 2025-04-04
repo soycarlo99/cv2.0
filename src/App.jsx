@@ -276,6 +276,10 @@ function App() {
               {cvData.name}
               <span className="cursor"></span>
             </h1>
+            <img
+              className="profilePic"
+              src="https://soycarlo99.github.io/CV/img/profile.jpeg"
+            />
             <div className="vim-hints">
               <p>f: fullscreen</p>
               <p>j: scroll down</p>
